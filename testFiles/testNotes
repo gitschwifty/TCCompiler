@@ -1,0 +1,10 @@
+assembly to linker
+nasm -f macho64 {name}.asm
+ld {name}.o
+
+
+can also just go
+gcc -S {name}.c
+gcc {name}.s
+
+get compiler to take the c file into .s file then link idk

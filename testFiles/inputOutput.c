@@ -4,11 +4,13 @@
 *
 */
 
+#include <stdio.h>
+
 int main()
 {
   int x;
-  std::cout << "Enter an integer: ";
-  std::cin >> x;
-  std::cout << "The integer is: " << x << "\n";
+  printf("Enter an integer: ");
+  scanf("%d", &x);
+  printf("Your number is: %d", x);
   return 0;
 }

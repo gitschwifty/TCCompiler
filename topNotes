@@ -1,0 +1,10 @@
+bash commands to assemble asm code and link files
+nasm -f macho64 {name}.asm
+ld {name}.o
+
+current architecture- macho64 x86_64: c -> asm -> object -> executable
+should probably eventually run it to a linux architecture if possible. RISC
+would honestly be faster than x86_64 but depends on final run choice. could
+create an inbetween thing: go from c to non-platform specific lang, then run
+to the assembly and machine language for specific platform, to using linker
+for the executable

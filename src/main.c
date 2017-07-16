@@ -4,9 +4,11 @@
 *
 **/
 
-#include "CCompiler.h"
+#include "../include/CCompiler.h"
 
 int main(int argv, char **argv)
 {
-  
+  CCompiler c;
+  c.run("test.c");
+  return 0;
 }

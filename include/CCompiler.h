@@ -18,12 +18,35 @@
 #ifndef CCompiler_h
 #define  CCompiler_h
 
+#include "Parser.h"
+#include "CodeGenerator.h"
+
 class CCompiler
 {
 private:
-  int setup();
+  Parser p;
+  CodeGenerator cg;
+  AbstractSyntaxTree ast;
+  int setup ();
 public:
-  int run(int argv);
+  int run(char filename[]);
+  int start();
+}
+
+int run(char filename[])
+{
+  std::cout << filename << "\n";
+}
+
+int setup()
+{
+  p.start();
+  cg.start();
+}
+
+int start()
+{
+  setup();
 }
 
 #endif /* !CCompiler_h */

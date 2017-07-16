@@ -7,22 +7,19 @@
 #ifndef AssemblyLib_h
 #define AssemblyLib_h
 
-class AssemblyLib
+typedef struct
 {
-private:
-  int setup();
-public:
-  int start();
+} AssemblyLib;
+
+int ass_setup()
+{
+  return 0;
 }
 
-int setup()
+int ass_start()
 {
-
-}
-
-int start()
-{
-
+  ass_setup();
+  return 0;
 }
 
 #endif /* AssemblyLib_h */

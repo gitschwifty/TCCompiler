@@ -9,23 +9,21 @@
 
 #include "AssemblyLib.h"
 
-class CodeGenerator
+typedef struct
 {
-private:
   AssemblyLib assLib;
-  int setup();
-public:
-  int start();
+} CodeGenerator;
+
+int cg_setup()
+{
+  ass_start();
+  return 0;
 }
 
-int setup()
+int cg_start()
 {
-  assLib.start();
-}
-
-int start()
-{
-  setup();
+  cg_setup();
+  return 0;
 }
 
 #endif /* CodeGenerator_h */

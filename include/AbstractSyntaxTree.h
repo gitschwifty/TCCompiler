@@ -7,22 +7,19 @@
 #ifndef AbstractSyntaxTree_h
 #define AbstractSyntaxTree_h
 
-class AbstractSyntaxTree
+typedef struct
 {
-private:
-  int setup();
-public:
-  int start();
+} AbstractSyntaxTree;
+
+int ast_setup()
+{
+  return 0;
 }
 
-int setup()
+int ast_start()
 {
-
-}
-
-int start()
-{
-  setup();
+  ast_setup();
+  return 0;
 }
 
 #endif /* AbstractSyntaxTree_h */

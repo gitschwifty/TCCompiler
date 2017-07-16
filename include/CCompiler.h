@@ -20,33 +20,32 @@
 
 #include "Parser.h"
 #include "CodeGenerator.h"
+#include <stdio.h>
 
-class CCompiler
+typedef struct
 {
-private:
   Parser p;
   CodeGenerator cg;
   AbstractSyntaxTree ast;
-  int setup ();
-public:
-  int run(char filename[]);
-  int start();
+} CCompiler;
+
+int comp_run(char filename[])
+{
+  printf("%s\n", filename);
+  return 0;
 }
 
-int run(char filename[])
+int comp_setup()
 {
-  std::cout << filename << "\n";
+  par_start();
+  cg_start();
+  return 0;
 }
 
-int setup()
+int comp_start()
 {
-  p.start();
-  cg.start();
-}
-
-int start()
-{
-  setup();
+  comp_setup();
+  return 0;
 }
 
 #endif /* !CCompiler_h */

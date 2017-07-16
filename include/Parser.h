@@ -9,23 +9,21 @@
 
 #include "AbstractSyntaxTree.h"
 
-class Parser
+typedef struct
 {
-private:
   AbstractSyntaxTree ast;
-  int setup();
-public:
-  int start();
+} Parser;
+
+int par_setup()
+{
+  ast_start();
+  return 0;
 }
 
-int setup()
+int par_start()
 {
-  ast.start();
-}
-
-int start()
-{
-  setup();
+  par_setup();
+  return 0;
 }
 
 #endif /* !Parser_h */

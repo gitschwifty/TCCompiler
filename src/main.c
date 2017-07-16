@@ -6,9 +6,9 @@
 
 #include "../include/CCompiler.h"
 
-int main(int argv, char **argv)
+int main(int argc, char *argv[])
 {
   CCompiler c;
-  c.run("test.c");
+  comp_run("test.c");
   return 0;
 }

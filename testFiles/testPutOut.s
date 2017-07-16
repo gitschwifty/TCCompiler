@@ -13,26 +13,25 @@ Ltmp1:
 	movq	%rsp, %rbp
 Ltmp2:
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	leaq	L_.str(%rip), %rdi
-	leaq	L_.str.1(%rip), %rsi
+	subq	$32, %rsp
+	leaq	L_.str(%rip), %rax
 	movl	$0, -4(%rbp)
+	movl	%edi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	%rax, %rdi
 	movb	$0, %al
 	callq	_printf
 	xorl	%ecx, %ecx
-	movl	%eax, -8(%rbp)          ## 4-byte Spill
+	movl	%eax, -20(%rbp)         ## 4-byte Spill
 	movl	%ecx, %eax
-	addq	$16, %rsp
+	addq	$32, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
 
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
-	.asciz	"Hello %s\n"
-
-L_.str.1:                               ## @.str.1
-	.asciz	"world"
+	.asciz	"Hello world.\n"
 
 
 .subsections_via_symbols

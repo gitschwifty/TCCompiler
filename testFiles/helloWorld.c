@@ -1,13 +1,7 @@
-/**
-*
-* Test compile file for basic hello world
-*
-**/
-
 #include <stdio.h>
 
 int main()
 {
-  puts("Hello world.\n");
+  printf("Hello %s\n", "world");
   return 0;
 }

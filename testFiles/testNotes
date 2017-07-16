@@ -1,6 +1,7 @@
 assembly to linker
 nasm -f macho64 {name}.asm
 ld {name}.o
+probably not needed unsure
 
 
 can also just go
@@ -8,3 +9,11 @@ gcc -S {name}.c
 gcc {name}.s
 
 get compiler to take the c file into .s file then link idk
+
+/**
+*
+* mainTest.c
+* Main C File for test of returning values from executable
+* returns 2;
+*
+**/

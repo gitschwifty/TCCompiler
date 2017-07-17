@@ -11,15 +11,7 @@ typedef struct
 {
 } AbstractSyntaxTree;
 
-int ast_setup()
-{
-  return 0;
-}
-
-int ast_start()
-{
-  ast_setup();
-  return 0;
-}
+int ast_setup();
+int ast_start();
 
 #endif /* AbstractSyntaxTree_h */

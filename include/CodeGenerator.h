@@ -14,16 +14,7 @@ typedef struct
   AssemblyLib assLib;
 } CodeGenerator;
 
-int cg_setup()
-{
-  ass_start();
-  return 0;
-}
-
-int cg_start()
-{
-  cg_setup();
-  return 0;
-}
+int cg_setup();
+int cg_start();
 
 #endif /* CodeGenerator_h */

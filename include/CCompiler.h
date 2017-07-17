@@ -35,17 +35,7 @@ int comp_run(char filename[])
   return 0;
 }
 
-int comp_setup()
-{
-  par_start();
-  cg_start();
-  return 0;
-}
-
-int comp_start()
-{
-  comp_setup();
-  return 0;
-}
+int comp_setup();
+int comp_start();
 
 #endif /* !CCompiler_h */

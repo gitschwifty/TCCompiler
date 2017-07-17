@@ -14,16 +14,7 @@ typedef struct
   AbstractSyntaxTree ast;
 } Parser;
 
-int par_setup()
-{
-  ast_start();
-  return 0;
-}
-
-int par_start()
-{
-  par_setup();
-  return 0;
-}
+int par_setup();
+int par_start();
 
 #endif /* !Parser_h */

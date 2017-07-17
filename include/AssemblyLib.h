@@ -11,15 +11,7 @@ typedef struct
 {
 } AssemblyLib;
 
-int ass_setup()
-{
-  return 0;
-}
-
-int ass_start()
-{
-  ass_setup();
-  return 0;
-}
+int ass_setup();
+int ass_start();
 
 #endif /* AssemblyLib_h */

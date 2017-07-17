@@ -20,22 +20,16 @@
 
 #include "Parser.h"
 #include "CodeGenerator.h"
-#include <stdio.h>
 
 typedef struct
 {
-  Parser p;
-  CodeGenerator cg;
-  AbstractSyntaxTree ast;
+  Parser *p;
+  CodeGenerator *cg;
+  AbstractSyntaxTree *ast;
 } CCompiler;
 
-int comp_run(char filename[])
-{
-  printf("%s\n", filename);
-  return 0;
-}
-
+int comp_run(CCompiler *cc, char filename[]);
 int comp_setup();
-int comp_start();
+int comp_start(CCompiler *cc, Parser *pa, CodeGenerator *c, AbstractSyntaxTree *a);
 
 #endif /* !CCompiler_h */

@@ -4,11 +4,23 @@
 *
 **/
 
-#include "../include/CCompiler.h"
+#include "../lib/CCompiler.c"
 
 int main(int argc, char *argv[])
 {
-  CCompiler c;
-  comp_run("test.c");
+  CCompiler ccomp,*cptr;
+  Parser p, *pptr;
+  CodeGenerator cg, *cgptr;
+  AbstractSyntaxTree ast, *astptr;
+  cptr = malloc(sizeof(CCompiler) * 4);
+  cptr = &ccomp;
+  pptr = malloc(sizeof(Parser) * 4);
+  pptr = &p;
+  cgptr = malloc(sizeof(CodeGenerator) * 4);
+  cgptr = &cg;
+  astptr = malloc(sizeof(AbstractSyntaxTree) * 4);
+  astptr = &ast;
+  comp_start(cptr, pptr, cgptr, astptr);
+  comp_run(cptr, "test.c");
   return 0;
 }

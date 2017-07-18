@@ -8,18 +8,20 @@
 #include "Parser.c"
 #include "CodeGenerator.c"
 
+/**
+* file_read: Takes parameters CCompiler pointer cc, and filename
+* array. Passes to parser to read line by line.
+**/
 int file_read(CCompiler *cc, char filename[])
 {
-  FILE *f = fopen(filename, "r");
-  char buff[256];
-  while(fgets(buff, sizeof(buff), f))
-  {
-    printf("%s", buff);
-  }
-  fclose(f);
+  file_parse(cc->p, filename);
   return 0;
 }
 
+/**
+* comp_run: takes parameters CCompiler pointer cc and filename array
+* starts parser and code generator, then calls file_read
+**/
 int comp_run(CCompiler *cc, char filename[])
 {
   printf("Compiler: %s\n", filename);
@@ -29,16 +31,23 @@ int comp_run(CCompiler *cc, char filename[])
   return 0;
 }
 
+/**
+* comp_setup: idk placeholder
+**/
 int comp_setup()
 {
   return 0;
 }
 
-int comp_start(CCompiler *cc, Parser *pa, CodeGenerator *c, AbstractSyntaxTree *a, AssemblyLib *al)
+/**
+* comp_start: takes parameter CCompiler pointer cc, and assigns
+* all its pointers to the correct part of the compiler
+**/
+int comp_start(CCompiler *cc)
 {
-  cc->p = pa;
-  cc->cg = c;
-  cc->ast = a;
-  cc->assLib = al;
+  cc->cg = &cc->c;
+  cc->p = &cc->pars;
+  cc->ast = &cc->a;
+  cc->assLib = &cc->assem;
   return 0;
 }

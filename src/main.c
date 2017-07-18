@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
   Parser p, *pptr;
   CodeGenerator cg, *cgptr;
   AbstractSyntaxTree ast, *astptr;
+  AssemblyLib al, *alptr;
   cptr = malloc(sizeof(CCompiler) * 4);
   cptr = &ccomp;
   pptr = malloc(sizeof(Parser) * 4);
@@ -20,7 +21,9 @@ int main(int argc, char *argv[])
   cgptr = &cg;
   astptr = malloc(sizeof(AbstractSyntaxTree) * 4);
   astptr = &ast;
-  comp_start(cptr, pptr, cgptr, astptr);
+  alptr = malloc(sizeof(AssemblyLib) * 4);
+  alptr = &al;
+  comp_start(cptr, pptr, cgptr, astptr, alptr);
   comp_run(cptr, "test.c");
   return 0;
 }

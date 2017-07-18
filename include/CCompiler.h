@@ -26,10 +26,12 @@ typedef struct
   Parser *p;
   CodeGenerator *cg;
   AbstractSyntaxTree *ast;
+  AssemblyLib *assLib;
 } CCompiler;
 
 int comp_run(CCompiler *cc, char filename[]);
 int comp_setup();
-int comp_start(CCompiler *cc, Parser *pa, CodeGenerator *c, AbstractSyntaxTree *a);
+int comp_start(CCompiler *cc, Parser *pa, CodeGenerator *c, AbstractSyntaxTree *a, AssemblyLib *al);
+int file_read(CCompiler *cc, char filename[]);
 
 #endif /* !CCompiler_h */

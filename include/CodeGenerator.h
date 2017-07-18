@@ -11,10 +11,10 @@
 
 typedef struct
 {
-  AssemblyLib assLib;
+  AssemblyLib *assLib;
 } CodeGenerator;
 
 int cg_setup();
-int cg_start();
+int cg_start(CodeGenerator *cg, AssemblyLib *al, char filename[]);
 
 #endif /* CodeGenerator_h */

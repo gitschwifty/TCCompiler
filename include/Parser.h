@@ -16,6 +16,6 @@ typedef struct
 } Parser;
 
 int par_setup();
-int par_start(Parser *p, char filename[], AbstractSyntaxTree *astptr);
+int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[]);
 
 #endif /* !Parser_h */

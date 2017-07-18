@@ -8,6 +8,6 @@
 
 int ast_start(AbstractSyntaxTree *ast, char filename[])
 {
-  printf("%s\n", filename);
+  printf("AST: %s\n", filename);
   return 0;
 }

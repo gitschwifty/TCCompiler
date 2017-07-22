@@ -8,7 +8,6 @@
 #define Parser_h
 
 #include "AbstractSyntaxTree.h"
-#include <stdlib.h>
 #include <string.h>
 
 typedef struct

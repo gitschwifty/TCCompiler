@@ -1,0 +1,5 @@
+int main()
+{
+  printf("Does this work as intended?\n");
+  return 0;
+}

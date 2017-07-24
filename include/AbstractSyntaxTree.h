@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Vector.h"
+#include "Node.h"
 
 typedef struct
 {
@@ -63,6 +63,10 @@ typedef struct
 
 int ast_setup();
 int ast_start(AbstractSyntaxTree *ast, char filename[]);
-int addBinOp(int *iOne, int *iTwo, char op[], struct Node* current);
+void insertBinaryOp(struct Node *current, char data[], int p);
+void insertInt(struct Node *current, int *data, int p);
+void insertUnaryOp(struct Node *current, char data[], int p);
+void insertString(struct Node *current, char data[], int p);
+void nextTest(AbstractSyntaxTree *ast);
 
 #endif /* AbstractSyntaxTree_h */

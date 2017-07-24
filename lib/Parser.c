@@ -16,6 +16,8 @@ int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[])
   printf("Parser: %s\n", filename);
   p->ast = astptr;
   ast_start(p->ast, filename);
+  //vectorTest(p->ast); replace with nextTest
+  nextTest(p->ast);
   char newfilename[strlen(filename) + 1];
   strncpy(newfilename, filename, strlen(filename) - 2);
   newfilename[strlen(filename) - 2] = '.';

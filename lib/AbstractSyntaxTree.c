@@ -6,66 +6,117 @@
 
 #include "../include/AbstractSyntaxTree.h"
 
-void insertInt(struct Node *current, enum type_token tok, int *data, int p)
+//p 0 is left, p 1 is right, p 2 is next
+void insertString(struct Node *current, char data[], int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = tok;
+  temp->token = STRING;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;
-  temp->vect = 0;
-  temp->v = NULL;
+  temp->next = NULL;
+  temp->hasNext = 0;
   if(p == 0)
   {
     current->left = temp;
   }
-  else
+  else if(p == 1)
   {
     current->right = temp;
   }
+  else if(p == 2)
+  {
+    addNext(current, temp);
+    if(current->right == NULL && current->left != temp)
+    {
+      current->right = temp;
+    }
+  }
 }
 
-void insertOp(struct Node *current, enum type_token tok, char data[], int p)
+void insertInt(struct Node *current, int *data, int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = tok;
+  temp->token = INT;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;
-  temp->vect = 0;
-  temp->v = NULL;
+  temp->next = NULL;
+  temp->hasNext = 0;
   if(p == 0)
   {
     current->left = temp;
   }
-  else
+  else if(p == 1)
   {
     current->right = temp;
   }
+  else if(p == 2)
+  {
+    addNext(current, temp);
+    if(current->right == NULL && current->left != temp)
+    {
+      current->right = temp;
+    }
+  }
 }
 
-int addBinOp(int *iOne, int *iTwo, char op[], struct Node *current)
+void insertUnaryOp(struct Node *current, char data[], int p)
 {
-  /*printf("1\n");
-  struct Node nTwo = {NULL, NULL, NULL, INT_TYPE, 0, &iOne, NULL};
-  printf("2\n");
-  struct Node nThree = {NULL, NULL, NULL, INT_TYPE, 0, &iTwo, NULL};
-  printf("3\n");
-  struct Node nOne = {current, &nOne, &nTwo, OP_TYPE, 0, op, NULL};
-  printf("4\n");
-  current->left = &nOne;
-  printf("5\n");
-  nTwo.parent = &nOne;
-  printf("6\n");
-  nThree.parent = &nOne;
-  printf("7\n");*/
-  insertOp(current, OP_TYPE, "add", 0);
-  insertInt(current->left, INT_TYPE, iOne, 0);
-  insertInt(current->left, INT_TYPE, iTwo, 1);
+  struct Node *temp = malloc(sizeof(struct Node));
+  temp->data = data;
+  temp->token = UNARY_OP;
+  temp->parent = current;
+  temp->left = NULL;
+  temp->right = NULL;
+  temp->next = NULL;
+  temp->hasNext = 0;
+  if(p == 0)
+  {
+    current->left = temp;
+  }
+  else if(p == 1)
+  {
+    current->right = temp;
+  }
+  else if(p == 2)
+  {
+    addNext(current, temp);
+    if(current->right == NULL && current->left != temp)
+    {
+      current->right = temp;
+    }
+  }
+}
 
-  return 0;
+void insertBinaryOp(struct Node *current, char data[], int p)
+{
+  struct Node *temp = malloc(sizeof(struct Node));
+  temp->data = data;
+  temp->token = BINARY_OP;
+  temp->parent = current;
+  temp->left = NULL;
+  temp->right = NULL;
+  temp->next = NULL;
+  temp->hasNext = 0;
+  if(p == 0)
+  {
+    current->left = temp;
+  }
+  else if(p == 1)
+  {
+    current->right = temp;
+  }
+  else if(p == 2)
+  {
+    addNext(current, temp);
+    if(current->right == NULL && current->left != temp)
+    {
+      current->right = temp;
+    }
+  }
 }
 
 /**
@@ -79,14 +130,54 @@ int ast_start(AbstractSyntaxTree *ast, char filename[])
   struct Node *current;
   ast->head = &h;
   current = &h;
+  current->hasNext = 0;
   int iOne = 3;
   int iTwo = 5;
+  int iThree = 0;
   int *ipO, *ipT;
   ipO = &iOne;
   ipT = &iTwo;
-  addBinOp(ipO, ipT, "add", current);
-  printf("op node: %s\n", (char*)current->left->data);
+  insertBinaryOp(current, "add", 0);
+  insertInt(current->left, ipO, 0);
+  insertInt(current->left, ipT, 1);
+  insertUnaryOp(current, "printf", 1);
+  char t[] = "hello world";
+  insertString(current->right, t, 0);
+  printf("op node 1: %s\n", (char*)current->left->data);
   printf("op node left: %d\n", *(int*)current->left->left->data);
   printf("op node right: %d\n", *(int*)current->left->right->data);
+  printf("op node 2: %s\n", (char*)current->right->data);
+  printf("op node 2 val: %s\n", (char*)current->right->left->data);
   return 0;
+}
+
+/**
+* nextTest: takes param ast, tests next node structure
+**/
+void nextTest(AbstractSyntaxTree *ast)
+{
+  struct Node h;
+  struct Node *current;
+  ast->head = &h;
+  current = &h;
+  insertUnaryOp(current, "add", 0);
+  current = current->left;
+  int iOne, iTwo, iThree, iFour, iFive;
+  int *ipt;
+  iOne = 0;
+  iTwo = 1;
+  iThree = 2;
+  iFour = 3;
+  iFive = 4;
+  ipt = &iOne;
+  insertInt(current, ipt, 2);
+  ipt = &iTwo;
+  insertInt(current, ipt, 2);
+  ipt = &iThree;
+  insertInt(current, ipt, 2);
+  ipt = &iFour;
+  insertInt(current, ipt, 2);
+  ipt = &iFive;
+  insertInt(current, ipt, 2);
+  traverseNext(current->left);
 }

@@ -16,15 +16,77 @@ int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[])
   printf("Parser: %s\n", filename);
   p->ast = astptr;
   ast_start(p->ast, filename);
-  //vectorTest(p->ast); replace with nextTest
-  nextTest(p->ast);
+  //nextTest(p->ast);
   char newfilename[strlen(filename) + 1];
   strncpy(newfilename, filename, strlen(filename) - 2);
   newfilename[strlen(filename) - 2] = '.';
   newfilename[strlen(filename) - 1] = 'a';
   newfilename[strlen(filename)] = '\0';
   p->newf = fopen(newfilename, "w");
+  parse_line(p, "int main()");
   return 0;
+}
+
+/**
+* getNextIndex: returns the index of the next non-alpha char
+* assumes char[0] is alpha and looking for word from char[0]
+* to char[return val]
+**/
+int getNextIndex(char line[])
+{
+  int i = 0;
+  while(isalpha(line[i]))
+  {
+    i++;
+  }
+  return i;
+}
+
+/**
+* parse_word: takes word, adds to AST, checks tokens after word
+**/
+int parse_word(Parser *p, char word[])
+{
+  printf("%s\n", word);
+  return 0;
+}
+
+/**
+* parse_line: takes parser and line, parses the line and adds
+* each part to the AST
+**/
+int parse_line(Parser *p, char line[])
+{
+  if(isalpha(line[0]))
+  {
+    int j = getNextIndex(line);
+    char word[j];
+    strncpy(word, line, j);
+    word[j] = '\0';
+    parse_word(p, word);
+    line = &line[j + 1];
+    if(!strncmp(word, "int", 3) || !strncmp(word, "char", 4))
+    {
+      if(isalpha(line[0]))
+      {
+        j = getNextIndex(line);
+        char wordTwo[j];
+        strncpy(wordTwo, line, j);
+        wordTwo[j] = '\0';
+        parse_word(p, wordTwo);
+        if(line[j] == "(" && line[j + 1] == ")")
+        {
+          //add in structure function with return type token word to ast
+          
+        }
+        else if(line[j] == ";")
+        {
+          //add in structure variable with type token word to ast
+        }
+      }
+    }
+  }
+  return 1;
 }
 
 /**

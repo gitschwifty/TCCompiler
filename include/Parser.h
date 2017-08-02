@@ -9,6 +9,7 @@
 
 #include "AbstractSyntaxTree.h"
 #include <string.h>
+#include <ctype.h>
 
 typedef struct
 {
@@ -20,5 +21,10 @@ int par_setup();
 int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[]);
 int file_parse(Parser *p, char filename[]);
 int p_file_write(Parser *p, char linetowrite[]);
+int parse_line(Parser *p, char line[]);
+int parse_word(Parser *p, char word[]);
+int parse_token(Parser *p, char token);
+int getNextIndex(char line[]);
+
 
 #endif /* !Parser_h */

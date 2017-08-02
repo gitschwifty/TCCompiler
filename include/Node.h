@@ -7,6 +7,7 @@
 #ifndef Node_h
 #define Node_h
 
+enum struct_token {VARIABLE, FUNCTION, POINTER, NODE}
 enum type_token {INT, DOUBLE, CHAR, STRING, BOOL, UNARY_OP, BINARY_OP, TERN_OP};
 
 struct Node
@@ -15,7 +16,9 @@ struct Node
   struct Node *left;
   struct Node *right;
   struct Node *next;
-  enum type_token token;
+  struct Node *val;
+  enum type_token type;
+  enum struct_token structure;
   int hasNext;
   void *data;
 };

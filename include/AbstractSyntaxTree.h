@@ -14,7 +14,6 @@
 typedef struct
 {
   char name[30];
-
 } Head;
 
 typedef struct

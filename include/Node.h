@@ -7,7 +7,7 @@
 #ifndef Node_h
 #define Node_h
 
-enum struct_token {VARIABLE, FUNCTION, POINTER, NODE}
+enum struct_token {VARIABLE, FUNCTION, POINTER, NODE};
 enum type_token {INT, DOUBLE, CHAR, STRING, BOOL, UNARY_OP, BINARY_OP, TERN_OP};
 
 struct Node

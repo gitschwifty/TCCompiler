@@ -8,17 +8,18 @@
 #define Parser_h
 
 #include "AbstractSyntaxTree.h"
-#include <string.h>
+#include "ParseTable.h"
 #include <ctype.h>
 
 typedef struct
 {
   AbstractSyntaxTree *ast;
   FILE *newf;
+  Table *table;
 } Parser;
 
 int par_setup();
-int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[]);
+int par_start(Parser *p, AbstractSyntaxTree *astptr, Table *tptr, char filename[]);
 int file_parse(Parser *p, char filename[]);
 int p_file_write(Parser *p, char linetowrite[]);
 int parse_line(Parser *p, char line[]);

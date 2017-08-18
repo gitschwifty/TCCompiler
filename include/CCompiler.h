@@ -27,6 +27,7 @@ typedef struct
   CodeGenerator c, *cg;
   AbstractSyntaxTree a, *ast;
   AssemblyLib assem, *assLib;
+  Table tab, *ptable;
 } CCompiler;
 
 int comp_run(CCompiler *cc, char filename[]);

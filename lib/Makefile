@@ -4,7 +4,10 @@ CCompiler.o: CCompiler.c ../include/CCompiler.h CodeGenerator.o Parser.o
 AbstractSyntaxTree.o: AbstractSyntaxTree.c ../include/AbstractSyntaxTree.h
 	gcc -c AbstractSyntaxTree.c
 
-Parser.o: Parser.c ../include/Parser.h AbstractSyntaxTree.o
+ParseTable.o: ParseTable.c ../include/ParseTable.h
+	gcc -c ParseTable.c
+
+Parser.o: Parser.c ../include/Parser.h AbstractSyntaxTree.o ParseTable.o
 	gcc -c Parser.c
 
 AssemblyLib.o: AssemblyLib.c ../include/AssemblyLib.h

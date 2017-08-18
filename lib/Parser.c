@@ -6,12 +6,13 @@
 
 #include "../include/Parser.h"
 #include "AbstractSyntaxTree.c"
+#include "ParseTable.c"
 
 /**
 * par_start: takes parameters parser pointer and ast pointer, and filename
 * char array. sets parser's ast pointer to ast, then starts ast.
 **/
-int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[])
+int par_start(Parser *p, AbstractSyntaxTree *astptr, Table *tptr, char filename[])
 {
   printf("Parser: %s\n", filename);
   p->ast = astptr;
@@ -24,6 +25,8 @@ int par_start(Parser *p, AbstractSyntaxTree *astptr, char filename[])
   newfilename[strlen(filename)] = '\0';
   p->newf = fopen(newfilename, "w");
   parse_line(p, "int main()");
+  p->table = tptr;
+  makeTable(p->table);
   return 0;
 }
 
@@ -74,12 +77,12 @@ int parse_line(Parser *p, char line[])
         strncpy(wordTwo, line, j);
         wordTwo[j] = '\0';
         parse_word(p, wordTwo);
-        if(line[j] == "(" && line[j + 1] == ")")
+        if(line[j] == '(' && line[j + 1] == ')')
         {
           //add in structure function with return type token word to ast
-          
+
         }
-        else if(line[j] == ";")
+        else if(line[j] == ';')
         {
           //add in structure variable with type token word to ast
         }

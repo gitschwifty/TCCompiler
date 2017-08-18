@@ -11,7 +11,7 @@ void insertString(struct Node *current, char data[], int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = STRING;
+  temp->type = STRING;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;
@@ -39,7 +39,7 @@ void insertInt(struct Node *current, int *data, int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = INT;
+  temp->type = INT;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;
@@ -67,7 +67,7 @@ void insertUnaryOp(struct Node *current, char data[], int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = UNARY_OP;
+  temp->type = UNARY_OP;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;
@@ -95,7 +95,7 @@ void insertBinaryOp(struct Node *current, char data[], int p)
 {
   struct Node *temp = malloc(sizeof(struct Node));
   temp->data = data;
-  temp->token = BINARY_OP;
+  temp->type = BINARY_OP;
   temp->parent = current;
   temp->left = NULL;
   temp->right = NULL;

@@ -25,7 +25,7 @@ int file_read(CCompiler *cc, char filename[])
 int comp_run(CCompiler *cc, char filename[])
 {
   printf("Compiler: %s\n", filename);
-  par_start(cc->p, cc->ast, filename);
+  par_start(cc->p, cc->ast, cc->ptable, filename);
   cg_start(cc->cg, cc->assLib, filename);
   file_read(cc, filename);
   return 0;
@@ -49,5 +49,6 @@ int comp_start(CCompiler *cc)
   cc->p = &cc->pars;
   cc->ast = &cc->a;
   cc->assLib = &cc->assem;
+  cc->ptable = &cc->tab;
   return 0;
 }

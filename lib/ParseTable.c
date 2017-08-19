@@ -158,13 +158,13 @@ struct Symbol* findSymbol(char val[], struct Table *x)
 }
 
 /**
-* makeSymbol: takes char val, table pointer, and int term.
-* makes symbol with value val and adds to table
+* makeSymbol: takes char val, table pointer
+* adds symbol with val to table
 **/
-int makeSymbol(char val[], struct Table *x, int term)
+int makeSymbol(char val[], struct Table *x)
 {
   x->sym[x->symSize] = malloc(sizeof(Symbol));
-  if(term)
+  if(strstr(val, "symbol") != NULL)
   {
     x->sym[x->symSize]->isTerm = 1;
   }
@@ -211,7 +211,6 @@ int parseCommas(Table *x, char *in)
     x->rules[x->ruleSize]->ruleSizes[x->rules[x->ruleSize]->rules]++;
   }
   x->rules[x->ruleSize]->rules++;
-  printf("%d", x->rules[x->ruleSize]->rules);
   return 0;
 }
 
@@ -295,44 +294,17 @@ int makeTable(struct Table *x)
 {
   x->ruleSize = 0;
   x->symSize = 0;
-  /*Symbol sOne, sTwo, sThree, sW;
-  sOne.isTerm = 1;
-  sOne.hasEmpty = 0;
-  sOne.valSize = 8;
-  strncpy(sOne.value, "Sadatay", 7);
-  sOne.value[7] = 0;
-  sTwo.isTerm = 1;
-  sTwo.hasEmpty = 0;
-  sTwo.valSize = 9;
-  strncpy(sTwo.value, "my damie", 8);
-  sTwo.value[8] = 0;
-  sThree.isTerm = 1;
-  sThree.hasEmpty = 0;
-  sThree.valSize = 6;
-  strncpy(sThree.value, "three", 5);
-  sThree.value[5] = 0;
-  sW.isTerm = 0;
-  sW.hasEmpty = 0;
-  sW.valSize = 7;
-  strncpy(sW.value, "Watata", 6);
-  sW.value[6] = 0;*/
-  makeSymbol("Sadatay", x, 1);
-  makeSymbol("my damie", x, 1);
-  makeSymbol("three", x, 1);
-  makeSymbol("Watata", x, 0);
-  char ruleOne[60] = "Watata: Sadatay, my damie; three, my damie; Sadatay.";
-  /*x->sym[0] = &sOne;
-  x->sym[1] = &sTwo;
-  x->sym[2] = &sThree;
-  x->sym[3] = &sW;
-  x->symSize = 4;*/
+  makeSymbol("Sadatay", x);
+  makeSymbol("my damie symbol", x);
+  makeSymbol("three symbol", x);
+  makeSymbol("Watata", x);
+  char ruleOne[80] = "Watata: Sadatay, my damie symbol; three symbol, my damie symbol; Sadatay.";
   for(int i = 0; i < 4; i++)
   {
-    printf("Sym %d: %s\n", i + 1, x->sym[i]->value);
+    printf("Sym %d is %d: %s\n", i + 1, x->sym[i]->isTerm, x->sym[i]->value);
   }
   parseRule(x, ruleOne);
   printf("Rule left: %s\n", x->rules[0]->left->value);
-  printf("rules: %d rulesizes[0]: %d", x->rules[0]->rules, x->rules[0]->ruleSizes[0]);
   for(int i = 0; i < 2; i++)
   {
     for(int j = 0; j < 2; j++)

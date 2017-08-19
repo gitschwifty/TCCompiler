@@ -53,7 +53,7 @@ int parseFollow(struct Rule *x, int i, int j);
 int firstCalc(struct Rule *x);
 int followCalc(struct Rule *x);
 struct Symbol* findSymbol(char val[], struct Table *x);
-int makeSymbol(char val[], struct Table *x, int term);
+int makeSymbol(char val[], struct Table *x);
 int parseCommas(struct Table *x, char *in);
 int parseRule(struct Table *x, char rul[]);
 int makeTable(struct Table *x);

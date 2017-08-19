@@ -1,3 +1,5 @@
+this file contains a couple of test files I have written to test compilation from c to assembly, then I'll go into executables since that is just an extension of the assembly generation no?
+
 assembly to linker
 nasm -f macho64 {name}.asm
 ld {name}.o

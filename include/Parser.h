@@ -11,7 +11,7 @@
 #include "ParseTable.h"
 #include <ctype.h>
 
-typedef struct
+typedef struct Parser
 {
   AbstractSyntaxTree *ast;
   FILE *newf;
